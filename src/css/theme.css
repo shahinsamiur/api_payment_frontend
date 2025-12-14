@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+:root {
+  --primary-lighter: #17cce6;
+  --primary-light: #27bbd0;
+  --primary-main: #2cabbe;
+  --primary-dark: #2ea3b4;
+  --primary-darker: #2a727d;
+
+  --error-light: #ffe3e2;
+  --error: #fe4332;
+  --error-dark: var(--color-red-600);
+  --warning-light: #fee3c6;
+  --warning: #ff9f02;
+  --success-light: #b7e9ce;
+  --success: #02ad4f;
+  --info-light: #c2edfe;
+  --info: #0074fe;
+
+  --toastify-icon-color-success: var(--color-success);
+  --toastify-icon-color-error: var(--color-error);
+  --toastify-icon-color-info: var(--color-info);
+  --toastify-icon-color-warning: var(--color-warning);
+}
+
+@theme {
+  --color-background: var(--color-gray-200);
+  --color-card: #ffffff;
+
+  --color-primary-lighter: var(--primary-lighter);
+  --color-primary-light: var(--primary-light);
+  --color-primary-main: var(--primary-main);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-darker: var(--primary-darker);
+
+  --color-error-light: var(--error-light);
+  --color-error: var(--error);
+  --color-error-dark: var(--error-dark);
+  --color-warning-light: var(--warning-light);
+  --color-warning: var(--warning);
+  --color-success-light: var(--success-light);
+  --color-success: var(--success);
+  --color-info-light: var(--info-light);
+  --color-info: var(--info);
+
+  --color-border: rgba(145, 158, 171, 0.24);
+}
+
+@layer theme {
+  .dark {
+    --color-background: #285056;
+    --color-card: #132f33;
+
+    --color-primary-lighter: var(--primary-lighter);
+    --color-primary-light: var(--primary-light);
+    --color-primary-main: var(--primary-main);
+    --color-primary-dark: var(--primary-dark);
+    --color-primary-darker: var(--primary-darker);
+
+    --color-error-light: var(--error-light);
+    --color-error: var(--error);
+    --color-error-dark: var(--error-dark);
+    --color-warning-light: var(--warning-light);
+    --color-warning: var(--warning);
+    --color-success-light: var(--success-light);
+    --color-success: var(--success);
+    --color-info-light: var(--info-light);
+    --color-info: var(--info);
+
+    --color-border: rgba(145, 158, 171, 0.24);
+  }
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+button {
+  @apply cursor-pointer disabled:cursor-not-allowed;
+}
+
+hr {
+  @apply border-border;
+}
+
+input,
+textarea,
+.input {
+  @apply w-full text-sm md:text-base px-4 py-2 rounded-md border outline-none border-gray-300
+     dark:text-white dark:border-border;
+}
+
+/* Hide number input arrows (cross-browser) */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  @apply appearance-none m-[0px];
+}
+input[type="number"] {
+  appearance: textfield; /* Standard syntax */
+  -moz-appearance: textfield; /* Firefox */
+  -webkit-appearance: none; /* Safari & Chrome */
+}
+
+label,
+.label {
+  @apply dark:text-white font-medium;
+}
+
+th,
+td {
+  @apply lg:px-4 px-2 py-3 text-center dark:text-white text-nowrap;
+}
+th {
+  @apply font-medium;
+}
+
+tbody tr {
+  @apply hover:bg-gray-200 dark:hover:bg-primary-darker/30 even:bg-gray-200/50 dark:even:bg-primary-darker/60;
+}
+
+.driver-popover-footer button {
+  @apply !px-6 !py-2 !rounded-lg border !border-primary-darker/90 !text-white !bg-primary-darker !font-semibold;
+  text-shadow: none !important;
+}
+
+.file-input {
+  @apply file:bg-primary-dark file:hover:bg-primary-darker file:cursor-pointer file:px-5 file:py-1 file:rounded-full file:text-white file:mr-10 !rounded-full;
+}
+
+/* ---------------------------------- toast message styles ---------------------------------------  */
+
+/* base toast wrapper */
+.toastify-toast {
+  @apply relative flex items-center gap-3 px-4 py-3 rounded-md border-l-4 shadow overflow-visible;
+}
+
+/* per-type backgrounds / text / border */
+.toastify-toast.Toastify__toast--success {
+  @apply bg-success-light text-black border-none;
+}
+.toastify-toast.Toastify__toast--error {
+  @apply bg-error-light   text-black border-none;
+}
+.toastify-toast.Toastify__toast--info {
+  @apply bg-info-light  text-black border-none;
+}
+.toastify-toast.Toastify__toast--warning {
+  @apply bg-warning-light text-black border-none;
+}
+
+/* progress bar base styling (absolute at bottom, full width) */
+.toastify-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  transform-origin: left;
+}
+
+/* per-type progress bar colors (use hex or Tailwind color values) */
+.toastify-toast.Toastify__toast--success .toastify-progress {
+  @apply bg-success;
+}
+.toastify-toast.Toastify__toast--error .toastify-progress {
+  @apply bg-error;
+}
+.toastify-toast.Toastify__toast--info .toastify-progress {
+  @apply bg-info;
+}
+.toastify-toast.Toastify__toast--warning .toastify-progress {
+  @apply bg-warning;
+}
+
+/* ensure the default progress-bar height is honored */
+.Toastify__progress-bar {
+  height: 4px;
+}
